@@ -13,8 +13,9 @@ var corsOptions = {
   }
 
   app.use(cors());
-
-  mongoose.connect('mongodb://127.0.0.1:27017/employees')
+//mongodb+srv://Kumamon001:xMwrPx241EdZ093p@cluster0.xowycrk.mongodb.net/?retryWrites=true&w=majority
+//mongodb://127.0.0.1:27017/employees
+  mongoose.connect('mongodb+srv://Kumamon001:xMwrPx241EdZ093p@cluster0.xowycrk.mongodb.net/?retryWrites=true&w=majority')
     .then(db=> console.log('DB is connected'))
     .catch(function (err) {
         console.log('Error controlado');
