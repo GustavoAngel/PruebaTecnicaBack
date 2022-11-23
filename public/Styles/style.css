@@ -1,0 +1,17 @@
+body{
+    background: #121F3D;
+}
+
+#container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 800px;
+}
+
+.DIVHolder {
+    border: 1px solid white;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    padding: 10px;
+    }
