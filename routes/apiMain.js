@@ -2,7 +2,7 @@ const express= require('express');
 const employees = require('../models/employees');
 const router=express.Router();
 
-router.get('/',async function (req,res) {
+router.get('/',async  (req,res) {
     try {
          //Se realiza la busqueda de todos los turnos de los empleados
         const employeesList=await employees.find();
@@ -15,6 +15,22 @@ router.get('/',async function (req,res) {
                 return 1;
             }
         });
+        //Send result to client side
+        res.json(data);
+    } catch (error) {
+        res.json("Status",error);
+    }    
+});
+
+router.get('/Usuarios',async  (req,res) {
+    try {
+        function onlyUnique(value, index, self) {
+             return self.indexOf(value) === index;
+        }
+        //Se realiza la busqueda de todos los turnos de los empleados
+        const employeesList=await employees.find();
+        //Order item for date most recent
+        const data=employeesList.map(item => new employees(item)).filter(onlyUnique);
         //Send result to client side
         res.json(data);
     } catch (error) {
