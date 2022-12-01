@@ -47,6 +47,31 @@ router.get('/Usuarios',async function  (req,res) {
     }    
 });
 
+router.get('/UsuariosTurnos/:id',async function  (req,res) {
+    try {
+        const userId= req.params.id;
+        //Se realiza la busqueda de todos los turnos de los empleados
+        const employeesList=await employees.find();
+
+        //Order item for date most recent
+        const data=employeesList.map(item => new employees(item));
+      
+
+        let resultado=[];
+
+        resultado= data.filter(function (value,index,s) {
+            return value.userId==userId;
+        });
+     
+        console.log(resultado.length);
+        
+        //Send result to client side
+        res.json(resultado);
+    } catch (error) {
+        console.log(error);
+        res.json(error);
+    }    
+});
 
 //Function for post request
 router.post('/',async function (req,res){
@@ -145,6 +170,7 @@ router.delete('/:id',async function (req,res) {
     //Variable for message
     let status='';
     try {
+        console.log('delete :'+req.params.id);
         //Delete item for de bd
         await employees.findByIdAndRemove(req.params.id);       
         //Update message successful
