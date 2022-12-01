@@ -28,14 +28,6 @@ router.get('/Usuarios',async function  (req,res) {
             //console.log(value,index);
             return true;
         }
-       
-        const array = [
-            { id: 3, name: 'Central Microscopy', fiscalYear: 2018 },
-            { id: 5, name: 'Crystallography Facility', fiscalYear: 2018 },
-            { id: 3, name: 'Central Microscopy', fiscalYear: 2017 },
-            { id: 5, name: 'Crystallography Facility', fiscalYear: 2017 }
-          ];
-        const result = [];
         //Se realiza la busqueda de todos los turnos de los empleados
         const employeesList=await employees.find();
         //Order item for date most recent
@@ -47,9 +39,7 @@ router.get('/Usuarios',async function  (req,res) {
                 map2.set(item.userId, true);    // set any value to Map
                 resultado.push(item);
             }
-        }
-   
-        
+        }  
         //Send result to client side
         res.json(resultado);
     } catch (error) {
