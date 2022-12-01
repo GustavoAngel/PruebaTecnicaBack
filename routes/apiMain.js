@@ -25,7 +25,7 @@ router.get('/',async function(req,res)  {
 router.get('/Usuarios',async function  (req,res) {
     try {
         function onlyUnique(value, index, self) {
-             return self.indexOf(value) === index;
+             return self.indexOf(value).userNme === index.userNme;
         }
         //Se realiza la busqueda de todos los turnos de los empleados
         const employeesList=await employees.find();
