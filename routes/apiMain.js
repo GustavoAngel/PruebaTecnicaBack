@@ -2,7 +2,7 @@ const express= require('express');
 const employees = require('../models/employees');
 const router=express.Router();
 
-router.get('/',async  (req,res) {
+router.get('/',async function(req,res)  {
     try {
          //Se realiza la busqueda de todos los turnos de los empleados
         const employeesList=await employees.find();
@@ -22,7 +22,7 @@ router.get('/',async  (req,res) {
     }    
 });
 
-router.get('/Usuarios',async  (req,res) {
+router.get('/Usuarios',async function  (req,res) {
     try {
         function onlyUnique(value, index, self) {
              return self.indexOf(value) === index;
@@ -38,8 +38,9 @@ router.get('/Usuarios',async  (req,res) {
     }    
 });
 
+
 //Function for post request
-router.post('/',async (req,res) =>{
+router.post('/',async function (req,res){
     //Variable for status of request
     let status='';
     //Start try for this method
