@@ -25,14 +25,43 @@ router.get('/',async function(req,res)  {
 router.get('/Usuarios',async function  (req,res) {
     try {
         function onlyUnique(value, index, self) {
-             return self.indexOf(value).userNme === index.userNme;
+            //console.log(value,index);
+            return true;
+        }
+       
+        const array = [
+            { id: 3, name: 'Central Microscopy', fiscalYear: 2018 },
+            { id: 5, name: 'Crystallography Facility', fiscalYear: 2018 },
+            { id: 3, name: 'Central Microscopy', fiscalYear: 2017 },
+            { id: 5, name: 'Crystallography Facility', fiscalYear: 2017 }
+          ];
+        const result = [];
+        const map = new Map();
+        for (const item of array) {
+            if(!map.has(item.id)){
+                map.set(item.id, true);    // set any value to Map
+                result.push({
+                    id: item.id,
+                    name: item.name
+                });
+            }
         }
         //Se realiza la busqueda de todos los turnos de los empleados
         const employeesList=await employees.find();
         //Order item for date most recent
         const data=employeesList.map(item => new employees(item)).filter(onlyUnique);
+        const resultado=[];
+        const map2 = new Map();
+        for (const item of data) {
+            if(!map.has(item.userId)){
+                map.set(item.userId, true);    // set any value to Map
+                resultado.push(item);
+            }
+        }
+   
+        
         //Send result to client side
-        res.json(data);
+        res.json(resultado);
     } catch (error) {
         res.json("Status",error);
     }    
