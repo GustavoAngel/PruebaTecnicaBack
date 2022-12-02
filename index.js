@@ -55,9 +55,13 @@ const dir = __dirname+'/public';
 
 app.use(express.static(dir));
 
-//Server listening
-app.listen(app.get('port'),()=>{
-    console.log("Server up", app.get('port'));
-});
 
-console.log(dir);
+
+async function main() {
+    //Server listening
+  await app.listen(app.get('port'),()=>{
+    console.log("Server up", app.get('port'));
+  });
+}
+
+main();
