@@ -1,3 +1,4 @@
+const { json } = require('express');
 const express= require('express');
 const employees = require('../models/employees');
 const router=express.Router();
@@ -67,6 +68,25 @@ router.get('/UsuariosTurnos/:id',async function  (req,res) {
         
         //Send result to client side
         res.json(resultado);
+    } catch (error) {
+        console.log(error);
+        res.json(error);
+    }    
+});
+
+router.get('/GetTurno/:id',async function  (req,res) {
+    try {
+        const userId= req.params.id;
+
+        employees.findById(userId, (err,docs) => {
+            if (err){
+                res.status(400).send({ error: 'Hubo un error al buscar!!!'})
+            }
+            else{
+                res.json(docs);
+            }
+        });
+        
     } catch (error) {
         console.log(error);
         res.json(error);
