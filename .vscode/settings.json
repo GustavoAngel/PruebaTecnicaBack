@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/d4dfdfe9-9400-400e-8617-88c4aa244594/AppServices/subscriptions/d4dfdfe9-9400-400e-8617-88c4aa244594/resourceGroups/backdemonode_group/providers/Microsoft.Web/sites/backdemonode",
+    "appService.deploySubpath": "."
+}
