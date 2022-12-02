@@ -6,7 +6,7 @@ var cors = require('cors')
 const app= express();
 
 var corsOptions = {
-    origin: ['https://vermillion-rolypoly-82ef9b.netlify.app/', 'http://192.168.1.157:8080/'],
+    origin: '',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
   }
 //   app.use(cors({
