@@ -81,7 +81,7 @@ router.get('/GetTurno/:id',async function  (req,res) {
         employees.findById(userId, (err,docs) => {
             if (err){
                 res.status(400).send({ error: 'Hubo un error al buscar!!!'})
-            }
+            } 
             else{
                 res.json(docs);
             }
