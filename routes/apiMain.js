@@ -224,7 +224,6 @@ router.delete('/:id',async function (req,res) {
     //Variable for message
     let status='';
     try {
-        console.log('delete :'+req.params.id);
         //Delete item for de bd
         await employees.findByIdAndRemove(req.params.id);       
         //Update message successful
