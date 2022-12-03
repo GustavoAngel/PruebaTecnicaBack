@@ -83,12 +83,12 @@ router.get('/GetTurno/:id',async function  (req,res) {
                 res.status(400).send({ error: 'Hubo un error al buscar!!!'})
             } 
             else{
+                console.log(typeof docs.PunchIn);
                 res.json(docs);
             }
         });
         
     } catch (error) {
-        console.log(error);
         res.json(error);
     }    
 });
@@ -97,6 +97,7 @@ router.get('/GetTurno/:id',async function  (req,res) {
 router.post('/',async function (req,res){
     //Variable for status of request
     let status='';
+  
     //Start try for this method
     try {
         //if body only contains 1 item                 
@@ -107,6 +108,7 @@ router.post('/',async function (req,res){
             const timeAux =req.body[0].PunchIn.split(':');
             //Time cast utility
             const timeAuxOut =req.body[0].PunchOut.split(':');
+
             //Replace value PunchIn
             employee.PunchIn = new Date(
                 employee.date.getFullYear(),
@@ -115,6 +117,8 @@ router.post('/',async function (req,res){
                 timeAux[0],    
                 timeAux[1],0,0
                 );
+              // console.log( Number.parseInt(timeAux[0])+6);
+            
             //Replace value PunchIn
             employee.PunchOut = new Date(
                 employee.date.getFullYear(),
@@ -123,13 +127,43 @@ router.post('/',async function (req,res){
                 timeAuxOut[0],    
                 timeAuxOut[1]
                 );
+            console.log(employee);
             //Save item                 
             await employee.save();   
         }
         else if (req.body.length>0) {
+            
+
+          
+
             req.body.forEach(async item => {
                 try {
                     const employee= new employees(item);
+                         //Time cast utility
+               const timeAux =req.body[0].PunchIn.split(':');
+               //Time cast utility
+               const timeAuxOut =req.body[0].PunchOut.split(':');
+   
+               //Replace value PunchIn
+               employee.PunchIn = new Date(
+                   employee.date.getFullYear(),
+                   employee.date.getMonth(),
+                   employee.date.getDate(),
+                   timeAux[0],    
+                   timeAux[1],0,0
+                   );
+                 // console.log( Number.parseInt(timeAux[0])+6);
+               
+               //Replace value PunchIn
+               employee.PunchOut = new Date(
+                   employee.date.getFullYear(),
+                   employee.date.getMonth(),
+                   employee.date.getDate(),
+                   timeAuxOut[0],    
+                   timeAuxOut[1]
+                   );
+            console.log(item);
+                   
                     await employee.save();    
                 } catch (err) {
                     console.error(err);
